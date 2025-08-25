@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Navbar from './components/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
-import Navbar from './components/Navbar';
+import Summarizer from './pages/Summarizer';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -14,37 +15,48 @@ const ProtectedRoute = ({ children }) => {
 
 // Main App Component
 const AppContent = () => {
-  const { isAuthenticated } = useAuth();
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {isAuthenticated && <Navbar />}
-      <div className="container mx-auto px-4 py-8">
+    <Router>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <Routes>
-          <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />} />
-          <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />} />
-          <Route 
-            path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-          <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          
+          {/* Protected Routes */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <div>
+                <Navbar />
+                <div className="container mx-auto px-4 py-8">
+                  <Dashboard />
+                </div>
+              </div>
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/summarizer" element={
+            <ProtectedRoute>
+              <div>
+                <Navbar />
+                <Summarizer />
+              </div>
+            </ProtectedRoute>
+          } />
+          
+          {/* Default redirect */}
+          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </div>
-    </div>
+    </Router>
   );
 };
 
-// App Component with Providers
+// App with Auth Provider
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <AppContent />
     </AuthProvider>
   );
 };

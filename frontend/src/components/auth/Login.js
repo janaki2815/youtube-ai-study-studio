@@ -68,7 +68,7 @@ const Login = () => {
               </label>
               <div className="mt-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-slate-400" />
+                  <Mail aria-hidden="true" className="h-5 w-5 text-slate-400" />
                 </div>
                 <input
                   id="email"
@@ -90,7 +90,7 @@ const Login = () => {
               </label>
               <div className="mt-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-slate-400" />
+                  <Lock aria-hidden="true" className="h-5 w-5 text-slate-400" />
                 </div>
                 <input
                   id="password"
@@ -105,13 +105,14 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-md"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-slate-400" />
+                    <EyeOff aria-hidden="true" className="h-5 w-5" />
                   ) : (
-                    <Eye className="h-5 w-5 text-slate-400" />
+                    <Eye aria-hidden="true" className="h-5 w-5" />
                   )}
                 </button>
               </div>
