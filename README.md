@@ -146,47 +146,6 @@ Before running this application, make sure you have the following installed:
 - `https://youtu.be/VIDEO_ID`
 - `https://www.youtube.com/embed/VIDEO_ID`
 
-## Project Structure
-
-```
-ai-learning-hub/
-├── backend/
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Video.js
-│   ├── routes/
-│   │   ├── auth.js
-│   │   └── videos.js
-│   ├── middleware/
-│   │   └── auth.js
-│   ├── utils/
-│   │   └── youtube.js
-│   ├── config.env
-│   ├── package.json
-│   └── server.js
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── auth/
-│   │   │   │   ├── Login.js
-│   │   │   │   └── Register.js
-│   │   │   ├── Dashboard.js
-│   │   │   ├── Navbar.js
-│   │   │   ├── VideoCard.js
-│   │   │   ├── VideoForm.js
-│   │   │   └── VideoList.js
-│   │   ├── contexts/
-│   │   │   └── AuthContext.js
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── index.css
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── postcss.config.js
-├── package.json
-└── README.md
-```
 
 ## Contributing
 
